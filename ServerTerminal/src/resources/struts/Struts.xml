@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 开启使用开发模式，详细错误提示,其值为true时struts.i18n.reload=true，struts.configuration.xml.reload=true -->
+	<constant name="struts.devMode" value="false" />
+	<constant name="actionPackages" value="org.iti.framework.hebut.action" />
+	<!-- 将对象交给spring管理 -->
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<!-- 指定资源编码类型 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定每次请求到达，重新加载资源文件,struts.devMode==true 则struts.i18n.reload=true -->
+	<constant name="struts.i18n.reload" value="false" />
+	<!-- 指定每次配置文件更改后，自动重新加载 -->
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.action.extension" value="do,action,jhtml,," />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+		<!--Example <action name="DesktopLoginAction" class="DesktopLoginAction"> 
+			<result name="success" type="redirect">DesktopAction.action</result> <result 
+			name="error" type="redirect">/error/login_error.html</result> </action> -->
+
+	</package>
+	<package name="ajax" namespace="/ajax" extends="json-default">
+		
+		<!-- Jaxws测试action-->
+		<action name="JaxWsTestAction" class="JaxWsTestAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- 测试数据库级联操作（新建实体） -->
+		<action name="CasCadeTest" class="CasCadeTest">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<!-- CXF短信服务封装测试 -->
+		<action name="CXFClientAction" class="CXFClientAction">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="FTPMain" class="FTPMain">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+		<action name="StringNote" class="StringNote">
+			<result name="success" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+	</package>
+</struts>

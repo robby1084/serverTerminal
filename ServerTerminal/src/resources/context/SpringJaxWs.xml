@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd    
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<!-- CXF Web Service -->
+
+	<!-- <jaxws:server id="userService" serviceClass="org.iti.cxf.practice4.serviceimpl.HelloWorldImpl"
+	address="/Users">
+	<jaxws:serviceBean>
+		要暴露的 bean 的引用
+		<ref bean="userServiceBean" />
+	</jaxws:serviceBean>
+	<jaxws:inInterceptors>
+		<ref bean="inMessageInterceptor" />
+	</jaxws:inInterceptors>
+	<jaxws:outInterceptors>
+		<ref bean="outLoggingInterceptor" />
+	</jaxws:outInterceptors>
+</jaxws:server> -->
+
+	<!-- csdn -->
+	<bean id="loggingInInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="loggingOutInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+	<jaxws:endpoint id="helloworld"
+	implementor="org.iti.cxf.practice4.serviceimpl.HelloWorldImpl" address="/HelloWorld" >
+		<jaxws:inInterceptors>
+			<ref bean="loggingInInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="loggingOutInterceptor" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+	
+	<!-- <bean id="myPasswordCallback" class="org.iti.cxf.practice2.server.MyPasswordCallback" />
+
+	<bean id="wSS4JInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="UsernameToken" />
+				<entry key="passwordType" value="PasswordText" />
+				<entry key="user" value="cxfServer" />
+				<entry key="passwordCallbackRef">
+					<ref bean="myPasswordCallback" />
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="helloWorldImpl" class="org.iti.cxf.practice2.serviceimpl.HelloWorldImpl" />
+	<jaxws:endpoint id="helloWorld" address="/hello"
+		implementor="#helloWorldImpl">
+		<jaxws:inInterceptors>
+			<ref bean="wSS4JInInterceptor" />
+		</jaxws:inInterceptors>
+	</jaxws:endpoint> -->
+
+</beans>
+
